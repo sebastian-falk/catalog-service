@@ -15,16 +15,16 @@ import java.util.List;
 @RequestMapping("/api/catalog-items/")
 public class CatalogController {
 
-    private final CatalogFlowService catalogService;
+    private final CatalogFlowService catalogFlowService;
 
     @Autowired
-    public CatalogController(CatalogFlowService catalogService) {
-        this.catalogService = catalogService;
+    public CatalogController(CatalogFlowService catalogFlowService) {
+        this.catalogFlowService = catalogFlowService;
     }
 
     @PostMapping("/calculate-total-sum")
     public ResponseEntity<BigDecimal> calculateDiscountedTotalSum(@RequestBody List<String> watchIds) {
-        BigDecimal calculatedDiscountedTotalSum = catalogService.calculateDiscountedTotalSum(watchIds);
+        BigDecimal calculatedDiscountedTotalSum = catalogFlowService.calculateDiscountedTotalSum(watchIds);
 
         if (calculatedDiscountedTotalSum == null || calculatedDiscountedTotalSum.compareTo(BigDecimal.ZERO) <= 0) {
             return ResponseEntity.notFound().build();
