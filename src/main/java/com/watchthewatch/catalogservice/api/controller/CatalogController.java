@@ -1,5 +1,7 @@
 package com.watchthewatch.catalogservice.api.controller;
 
+import com.watchthewatch.catalogservice.service.CatalogFlowService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,9 +15,22 @@ import java.util.List;
 @RequestMapping("/api/catalog-items/")
 public class CatalogController {
 
+    private final CatalogFlowService catalogService;
+
+    @Autowired
+    public CatalogController(CatalogFlowService catalogService) {
+        this.catalogService = catalogService;
+    }
+
     @PostMapping("/calculate-total-sum")
     public ResponseEntity<BigDecimal> calculateDiscountedTotalSum(@RequestBody List<String> watchIds) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        BigDecimal calculatedDiscountedTotalSum = catalogService.calculateDiscountedTotalSum(watchIds);
+
+        if (calculatedDiscountedTotalSum == null || calculatedDiscountedTotalSum.compareTo(BigDecimal.ZERO) <= 0) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(calculatedDiscountedTotalSum);
     }
 
 }
