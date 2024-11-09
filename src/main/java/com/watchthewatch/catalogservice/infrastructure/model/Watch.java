@@ -15,8 +15,8 @@ public class Watch {
     @Column(name = "watch_id")
     private String watchId;
 
-    @Column(nullable = false)
-    private String name;
+    @Column(nullable = false, name = "watch_name")
+    private String watchName;
 
     @Column(nullable = false, name = "unit_price")
     private BigDecimal unitPrice;
@@ -26,9 +26,9 @@ public class Watch {
 
     protected Watch() {}
 
-    public Watch(String watchId, String name, BigDecimal unitPrice, String discount) {
+    public Watch(String watchId, String watchName, BigDecimal unitPrice, String discount) {
         this.watchId = watchId;
-        this.name = name;
+        this.watchName = watchName;
         this.unitPrice = unitPrice;
         this.discount = discount;
     }
@@ -41,12 +41,12 @@ public class Watch {
         this.watchId = watchId;
     }
 
-    public String getName() {
-        return name;
+    public String getWatchName() {
+        return watchName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String watchName) {
+        this.watchName = watchName;
     }
 
     public BigDecimal getUnitPrice() {
@@ -69,7 +69,7 @@ public class Watch {
     public String toString() {
         return "Watch{" +
                 "watchId='" + watchId + '\'' +
-                ", name='" + name + '\'' +
+                ", watchName='" + watchName + '\'' +
                 ", unitPrice=" + unitPrice +
                 ", discount='" + discount + '\'' +
                 '}';
