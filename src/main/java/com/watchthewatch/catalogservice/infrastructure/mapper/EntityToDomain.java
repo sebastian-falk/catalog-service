@@ -2,20 +2,24 @@ package com.watchthewatch.catalogservice.infrastructure.mapper;
 
 import com.watchthewatch.catalogservice.infrastructure.model.Watch;
 
+import java.math.BigDecimal;
+
 public class EntityToDomain {
 
-    public com.watchthewatch.catalogservice.domain.model.Watch entityWatchToDomainWatch(Watch watch) {
+    public com.watchthewatch.catalogservice.domain.model.Watch entityWatchToDomainWatch(
+            Watch watch, int discountQuantity,
+            BigDecimal totalPriceForDiscountQuantity
+    ) {
         if (watch == null) {
             return null;
         }
 
-        throw new UnsupportedOperationException("Not implemented yet");
-
-//        com.watchthewatch.catalogservice.domain.model.Watch domainWatch =
-//                new com.watchthewatch.catalogservice.domain.model.Watch(
-//                        watch.getWatchId(),
-//                        watch.getWatchName(),
-//                        watch.getUnitPrice(),
-//                        )
+        return new com.watchthewatch.catalogservice.domain.model.Watch(
+                watch.getWatchId(),
+                watch.getWatchName(),
+                watch.getUnitPrice(),
+                discountQuantity,
+                totalPriceForDiscountQuantity
+                );
     }
 }

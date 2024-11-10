@@ -22,7 +22,7 @@ public class DiscountParser {
         }
 
         public int getQuantity() { return quantity; }
-        public BigDecimal getPrice() { return totalPriceForQuantity; }
+        public BigDecimal getTotalPriceForQuantity() { return totalPriceForQuantity; }
     }
 
 }

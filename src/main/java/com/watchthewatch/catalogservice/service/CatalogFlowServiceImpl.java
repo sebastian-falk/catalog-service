@@ -1,8 +1,10 @@
 package com.watchthewatch.catalogservice.service;
 
 import com.watchthewatch.catalogservice.domain.service.CatalogService;
+import com.watchthewatch.catalogservice.infrastructure.mapper.EntityToDomain;
 import com.watchthewatch.catalogservice.infrastructure.model.Watch;
 import com.watchthewatch.catalogservice.infrastructure.repository.WatchRepository;
+import com.watchthewatch.catalogservice.util.DiscountParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,8 +29,15 @@ public class CatalogFlowServiceImpl implements CatalogFlowService {
         if (watches.size() != watchIds.size()) {
             return BigDecimal.ZERO;
         }
-        throw new UnsupportedOperationException("Not implemented yet");
 
-//        catalogService.calculateDiscountedTotalSum()
+        EntityToDomain entityToDomain = new EntityToDomain();
+
+        List<com.watchthewatch.catalogservice.domain.model.Watch> domainWatches = watches.stream().map(w -> {
+            DiscountParser.Discount discount = DiscountParser.parseDiscount(w.getDiscount());
+
+            return entityToDomain.entityWatchToDomainWatch(w, discount.getQuantity(), discount.getTotalPriceForQuantity());
+        }).toList();
+
+        return catalogService.calculateDiscountedTotalSum(domainWatches, watchIds);
     }
 }

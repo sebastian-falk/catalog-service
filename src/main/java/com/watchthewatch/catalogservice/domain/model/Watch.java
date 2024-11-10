@@ -8,14 +8,14 @@ public class Watch {
     private String name;
     private BigDecimal price;
     private int discountedQuantity;
-    private BigDecimal discountedPrice;
+    private BigDecimal discountedPriceForQuantity;
 
-    public Watch(String id, String name, BigDecimal price, int discountedQuantity, BigDecimal discountedPrice) {
+    public Watch(String id, String name, BigDecimal price, int discountedQuantity, BigDecimal discountedPriceForQuantity) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.discountedQuantity = discountedQuantity;
-        this.discountedPrice = discountedPrice;
+        this.discountedPriceForQuantity = discountedPriceForQuantity;
     }
 
     public void setId(String id) {
@@ -34,8 +34,8 @@ public class Watch {
         this.discountedQuantity = discountedQuantity;
     }
 
-    public void setDiscountedPrice(BigDecimal discountedPrice) {
-        this.discountedPrice = discountedPrice;
+    public void setDiscountedPriceForQuantity(BigDecimal discountedPriceForQuantity) {
+        this.discountedPriceForQuantity = discountedPriceForQuantity;
     }
 
     public String getId() {
@@ -54,7 +54,7 @@ public class Watch {
         return discountedQuantity;
     }
 
-    public BigDecimal getDiscountedPrice() {
-        return discountedPrice;
+    public BigDecimal getDiscountedPriceForQuantity() {
+        return discountedPriceForQuantity;
     }
 }
