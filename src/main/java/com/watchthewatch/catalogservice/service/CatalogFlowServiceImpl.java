@@ -26,10 +26,6 @@ public class CatalogFlowServiceImpl implements CatalogFlowService {
     public BigDecimal calculateDiscountedTotalSum(List<String> watchIds) {
         List<Watch> watches = watchRepository.findByWatchIdIn(watchIds);
 
-        if (watches.size() != watchIds.size()) {
-            return BigDecimal.ZERO;
-        }
-
         EntityToDomain entityToDomain = new EntityToDomain();
 
         List<com.watchthewatch.catalogservice.domain.model.Watch> domainWatches = watches.stream().map(w -> {
