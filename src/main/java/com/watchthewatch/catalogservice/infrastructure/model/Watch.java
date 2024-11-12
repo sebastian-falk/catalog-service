@@ -21,7 +21,7 @@ public class Watch {
     @Column(nullable = false, name = "unit_price")
     private BigDecimal unitPrice;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String discount;
 
     protected Watch() {}
